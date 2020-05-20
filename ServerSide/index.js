@@ -37,14 +37,14 @@ function handleSocket(socket) {
     });
 
     //To register a bot and send data to web client
-    socket.on('registerBot', function (data) {
+    socket.on('bot-login', function (data) {
         console.log(data);
         socket.tag = data.uid;
         botSocketList.push(socket);
         botDataList.push(data);
         console.log("A bot connected: " + socket.id);
 
-        socket.emit('commands', [{command: 'openBrowser', arg1: "google.com"}]);
+        //socket.emit('commands', [{command: 'openBrowser', arg1: "google.com"}]);
 
         //Send bot connected + data to web client i.e., list of all connected devices
         if (adminSocket != null && adminSocket.connected)

@@ -3,8 +3,8 @@ var socket = require('socket.io');
 
 var app = express();    //App Setup
 app.use(express.static(__dirname + '/SClientSide/Dashboard')); //Static Files
-var server = app.listen(80, function () {
-    console.log('Listening to port 80');
+var server = app.listen(8095, function () {
+    console.log('Listening to port 8095');
 });
 
 

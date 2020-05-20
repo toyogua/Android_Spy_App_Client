@@ -1,4 +1,4 @@
-var port = 443;
+var port = 444;
 
 var fs = require('fs');
 var http = require('http');
@@ -17,7 +17,7 @@ app.use(express.static(__dirname, ''));
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     res.end();
-}).listen(80);
+}).listen(895);
 
 var httpsServer = https.createServer(options, app);
 var server = httpsServer.listen(port, function () {

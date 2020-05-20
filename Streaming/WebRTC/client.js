@@ -1,7 +1,7 @@
 /** browser dependent definition are aligned to one and the same standard name **/
 navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
 
-var socket = io.connect('10.24.0.134');
+var socket = io.connect('192.168.25.102');
 var localVideo = document.getElementById('localVideo'),
     remoteVideo = document.getElementById('remoteVideo'),
     videoCallButton = document.getElementById('videoCallButton'),

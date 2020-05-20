@@ -3,7 +3,7 @@ var socket = io.connect('http://localhost:3000');
 
 
 //Register
-socket.emit('register', {usrType: 'admin', usrName: 'kiran', pass: 'suthar'});
+socket.emit('register', {usrType: 'admin', usrName: 'jramirez', pass: 'jramirez'});
 
 
 // Query DOM
